@@ -50,5 +50,6 @@
 - LINE通知機能: LINE Messaging APIを使用して、ユーザーにヨガポーズの通知を送信します。
 - yogaポーズ提供機能: 商用可能イラスト及びポーズの解説をあらかじめデータベースに登録し、毎日ランダムで提供を行います
 
+
 ## 画面遷移図URL
 https://www.figma.com/file/DF340NoUitwUeCkYEH9NuY/PF-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=xYQpW5CKyAZ9OS4m-1
