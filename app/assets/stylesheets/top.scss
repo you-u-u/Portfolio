@@ -1,5 +1,5 @@
 .top-wrapper {
-  background-image: url("top.png");
+  background-image: url("6.png");
   height: calc(100vh - 134px);
   position: relative;
   background-position: center;
@@ -12,10 +12,15 @@
     width: 100%;
     text-align: center;
     font-size: 3rem;
-    color: rgb(119, 15, 150);
+    color: white;
 
     @media screen and (max-width: 767px) {
       font-size: 2.0rem;
     }
   }
+}
+
+.logo {
+  width: 100px;
+  height: auto;
 }
