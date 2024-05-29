@@ -1,5 +1,5 @@
 .top-wrapper {
-  background-image: url("6.png");
+  background-image: url("2.png");
   height: calc(100vh - 134px);
   position: relative;
   background-position: center;
@@ -12,15 +12,41 @@
     width: 100%;
     text-align: center;
     font-size: 3rem;
-    color: black;
+    color: rgb(48, 47, 47);
 
     @media screen and (max-width: 767px) {
       font-size: 2.0rem;
     }
   }
+  .top-start-botton {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+  }
+}
+
+.main-content {
+  background-color:#f1f0e3;
+}
+
+.fixed-size {
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
 }
 
 .logo {
   width: 100px;
+  height: auto;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.img-fluid {
+  max-width: 100%;
   height: auto;
 }
