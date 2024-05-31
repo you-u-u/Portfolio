@@ -1,13 +1,14 @@
 class PosesController < ApplicationController
-  before_action :set_pose, only: [:show]
-
-  def show;
-   pose = @pose
+  def random
+    @pose = Pose.order("RANDOM()").first
+    # binding.pry
+    redirect_to pose_path(@pose)
+    
   end
 
-  private
-
-  def set_pose
-    @pose = Pose.all.shuffle.first
+  def show
+    @pose = Pose.find(params[:id])
+    #binding.pry
   end
 end
+# 追加

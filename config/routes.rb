@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :users
   root 'staticpages#top'
   resources :poses, only: [:show]
+
+  # 追加
+  get 'pose/randam', to: 'poses#random', as: 'random_pose'
   # get 'pose', to: 'poses/#show'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
