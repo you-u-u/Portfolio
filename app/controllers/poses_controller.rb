@@ -1,10 +1,8 @@
 class PosesController < ApplicationController
   before_action :set_pose, only: [:show]
 
-  
-
   def show;
-  #@pose = Pose.order('RANDOM()').first
+   pose = @pose
   end
 
   private
