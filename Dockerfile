@@ -13,6 +13,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development"
 
+
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
@@ -20,12 +21,14 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips node-gyp pkg-config python-is-python3
 
-# Install Node.js and Yarn
+# Install JavaScript dependencies
 ARG NODE_VERSION=20.13.1
 ARG YARN_VERSION=1.22.19
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g yarn@$YARN_VERSION
+ENV PATH=/usr/local/node/bin:$PATH
+RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+    npm install -g yarn@$YARN_VERSION && \
+    rm -rf /tmp/node-build-master
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -45,6 +48,7 @@ RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+
 
 # Final stage for app image
 FROM base
