@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    # sessions: 'users/sessions'ここLINEログイン
+    #omniauth_callbacks: "omniauth_callbacks"
+  }
+  # 追加
+  # get 'users/auth/line', to: redirect('/users/auth/line')ここLINEログイン
+  
   root 'staticpages#top'
   resources :poses, only: [:show]
 
-  # 追加
   get 'pose/randam', to: 'poses#random', as: 'random_pose'
   # get 'pose', to: 'poses/#show'
 
