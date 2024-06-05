@@ -4,8 +4,9 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    logout
-    redirect_to root_path, status: :see_other
+    #logout
+    sign_out(current_user)
+    redirect_to root_path, status: :see_other, notice: "ログアウトしました"
   end
 end
 # 追加

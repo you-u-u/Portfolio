@@ -4,11 +4,15 @@ Rails.application.routes.draw do
     # sessions: 'users/sessions'ここLINEログイン
     #omniauth_callbacks: "omniauth_callbacks"
   }
+  devise_scope :user do
+    delete 'logout', to: 'users/sessions#destroy'
+  end
   # 追加
   # get 'users/auth/line', to: redirect('/users/auth/line')ここLINEログイン
   
   root 'staticpages#top'
   resources :poses, only: [:show]
+  #delete 'logout', to: 'users/sessions#destroy' ここログアウト
 
   get 'pose/randam', to: 'poses#random', as: 'random_pose'
   # get 'pose', to: 'poses/#show'
