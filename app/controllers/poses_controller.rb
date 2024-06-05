@@ -1,4 +1,6 @@
 class PosesController < ApplicationController
+  skip_before_action :authenticate_user! , only: %i[random show]
+
   def random
     @pose = Pose.order("RANDOM()").first
     # binding.pry
