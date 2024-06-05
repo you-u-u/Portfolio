@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
-    # sessions: 'users/sessions'ここLINEログイン
+    sessions: 'users/sessions'#ここLINEログイン
     #omniauth_callbacks: "omniauth_callbacks"
   }
   devise_scope :user do
-    delete 'logout', to: 'users/sessions#destroy'
+    delete 'logout', to: 'devise/sessions#destroy'
   end
   # 追加
-  # get 'users/auth/line', to: redirect('/users/auth/line')ここLINEログイン
+  get 'users/auth/line', to: redirect('/users/auth/line')#ここLINEログイン
   
   root 'staticpages#top'
   resources :poses, only: [:show]
