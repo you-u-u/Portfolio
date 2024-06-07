@@ -1,5 +1,5 @@
 class Users::SessionsController < Devise::SessionsController
-  skip_before_action :authenticate_user! , only: %i[new]
+  #skip_before_action :authenticate_user! , only: %i[new]
 
   def new 
     redirect_to user_line_omniauth_authorize_path

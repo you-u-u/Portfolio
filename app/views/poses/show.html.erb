@@ -32,7 +32,14 @@
     </div>
   </div>
 </div>
-<div class="container d-flex flex-column align-items-center">
-  <p>毎日あなたのLINEに1つのポーズをお届けします!</p>
-  <%= button_to "LINE Login", user_line_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline-secondary btn-lg" %>
-</div>
+<% if user_signed_in? %>
+  <div class="container d-flex flex-column align-items-center">
+    <p>今日の頑張りを記録しよう!</p>
+    <%= button_to "登録", "#", class: "btn btn-outline-secondary btn-lg" %>
+  </div>
+<% else %>
+  <div class="container d-flex flex-column align-items-center">
+    <p>まずはLINEでログインして、今日の頑張りを記録しよう！</p>
+    <%= button_to "LINE Login", user_line_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline-secondary btn-lg" %>
+  </div>
+<% end %>

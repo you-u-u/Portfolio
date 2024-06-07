@@ -8,11 +8,12 @@ Rails.application.routes.draw do
     delete 'logout', to: 'devise/sessions#destroy'
   end
   # 追加
-  get 'users/auth/line', to: redirect('/users/auth/line')#ここLINEログイン
+  get 'users/auth/line', to: redirect('/users/auth/line')
+  #ここLINEログイン
   
   root 'staticpages#top'
   resources :poses, only: [:show]
-  #delete 'logout', to: 'users/sessions#destroy' ここログアウト
+  delete 'logout', to: 'users/sessions#destroy' #ここログアウト
 
   get 'pose/randam', to: 'poses#random', as: 'random_pose'
   # get 'pose', to: 'poses/#show'
