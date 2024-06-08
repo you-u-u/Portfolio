@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'staticpages#top'
+  
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions'#ここLINEログイン
@@ -7,16 +9,14 @@ Rails.application.routes.draw do
   devise_scope :user do
     delete 'logout', to: 'devise/sessions#destroy'
   end
-  # 追加
-  get 'users/auth/line', to: redirect('/users/auth/line')
   #ここLINEログイン
+  get 'users/auth/line', to: redirect('/users/auth/line')
   
-  root 'staticpages#top'
+  #delete 'logout', to: 'users/sessions#destroy' #ここログアウト
+  
+  
   resources :poses, only: [:show]
-  delete 'logout', to: 'users/sessions#destroy' #ここログアウト
-
-  get 'pose/randam', to: 'poses#random', as: 'random_pose'
-  # get 'pose', to: 'poses/#show'
+  get 'pose/random', to: 'poses#random', as: 'random_pose'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
