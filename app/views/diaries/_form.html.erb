@@ -1,50 +1,110 @@
-<!--%= form_with (model:@diary, url:diaries_path, pose_id: @pose.id), local:true do |form| %-->
-<!--%= form_with(model: diary, local: true) do |form| %-->
-<%= form_with model: @diary do |form| %>
+<%= form_with model: @diary, local: true, class: 'container mt-4' do |form| %>
+  <%= form.hidden_field :pose_id, value: @pose.id %>
 
-  <!--ここ-->
-  <%= form.hidden_field :pose_id, value: @pose.id %> 
-  <div class="mb-3">
-    <%= form.label :date %>
-    <%= form.text_field :date, value: @diary.date, readonly: true %>
+  <div class="mb-3 row">
+    <%= form.label :date, class: 'form-label col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= form.text_field :date, value: @diary.date, readonly: true, class: 'form-control-plaintext' %>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <%= form.label :pose, class: 'form-label col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= form.text_field :pose_name, value: @pose.japanese_name, readonly: true, class: 'form-control-plaintext' %>
+    </div>
   </div>
 
   <div class="mb-3">
-    <%= form.label :pose %>
-    <%= form.text_field :pose_name, value: @pose.japanese_name, readonly: true %>
-  </div>
-
-   <div class="mb-3">
-    <%= form.label :compatibility, 'ポーズとの相性' %>
-    <%= form.select :compatibility, options_for_select(['', '◎', '〇', '×']) %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :condition, '体調' %>
-    <%= form.select :condition, options_for_select(['', '◎', '〇', '×']) %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :feeling, '気分' %>
-    <%= form.select :feeling, options_for_select(['', '◎', '〇', '×']) %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :sleep, '睡眠' %>
-    <%= form.select :sleep, options_for_select(['', '◎', '〇', '×']) %>
+    <%= form.label :compatibility, 'ポーズとの相性', class: 'form-label' %>
+    <div class="d-flex justify-content-start flex-wrap ms-3 gap-3">
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :compatibility, 'excellent', class: 'form-check-input' %>
+        <%= form.label :compatibility_excellent, '◎', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :compatibility, 'good', class: 'form-check-input' %>
+        <%= form.label :compatibility_good, '〇', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :compatibility, 'poor', class: 'form-check-input' %>
+        <%= form.label :compatibility_poor, '×', class: 'form-check-label fs-3' %>
+      </div>
+    </div>
   </div>
 
   <div class="mb-3">
-    <%= form.label :weight, '体重' %>
-    <%= form.text_field :weight %>
+    <%= form.label :condition, '体調', class: 'form-label' %>
+    <div class="d-flex justify-content-start flex-wrap ms-3 gap-3">
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :condition, 'excellent', class: 'form-check-input' %>
+        <%= form.label :condition_excellent, '◎', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :condition, 'good', class: 'form-check-input' %>
+        <%= form.label :condition_good, '〇', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :condition, 'poor', class: 'form-check-input' %>
+        <%= form.label :condition_poor, '×', class: 'form-check-label fs-3' %>
+      </div>
+    </div>
   </div>
 
   <div class="mb-3">
-    <%= form.label :memo, 'メモ' %>
-    <%= form.text_area :memo %>
+    <%= form.label :feeling, '気分', class: 'form-label' %>
+    <div class="d-flex justify-content-start flex-wrap ms-3 gap-3">
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :feeling, 'excellent', class: 'form-check-input' %>
+        <%= form.label :feeling_excellent, '◎', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :feeling, 'good', class: 'form-check-input' %>
+        <%= form.label :feeling_good, '〇', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :feeling, 'poor', class: 'form-check-input' %>
+        <%= form.label :feeling_poor, '×', class: 'form-check-label fs-3' %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit nil, class: "btn btn-outline-secondary btn-lg" %>
+  <div class="mb-3">
+    <%= form.label :sleep, '睡眠', class: 'form-label' %>
+    <div class="d-flex justify-content-start flex-wrap ms-3 gap-3">
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :sleep, 'excellent', class: 'form-check-input' %>
+        <%= form.label :sleep_excellent, '◎', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :sleep, 'good', class: 'form-check-input' %>
+        <%= form.label :sleep_good, '〇', class: 'form-check-label fs-3' %>
+      </div>
+      <div class="form-check form-check-inline">
+        <%= form.radio_button :sleep, 'poor', class: 'form-check-input' %>
+        <%= form.label :sleep_poor, '×', class: 'form-check-label fs-3' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <%= form.label :weight, '体重', class: 'form-label col-sm-3 col-form-label' %>
+    <div class="col-sm-9 d-flex align-items-center">
+      <%= form.text_field :weight, class: 'form-control' %>
+      <span class="ms-2 fs-5">kg</span>
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <%= form.label :memo, 'メモ', class: 'form-label col-sm-3 col-form-label' %>
+    <div class="col-sm-9">
+      <%= form.text_area :memo, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="container d-flex flex-column align-items-center">
+
+    <%= form.submit '記録する', class: 'btn btn-outline-secondary btn-lg' %>
   </div>
 <% end %>
+
