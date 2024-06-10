@@ -34,12 +34,13 @@
 </div>
 <% if user_signed_in? %>
   <div class="container d-flex flex-column align-items-center">
-    <p>今日の頑張りを記録しよう!</p>
-    <%= button_to "登録", "#", class: "btn btn-outline-secondary btn-lg" %>
+    <p>今日のがんばりを記録しよう!</p>
+    <!--% binding.pry %-->
+    <%= link_to "登録", new_diary_path(pose_id: @pose.id), class: "btn btn-outline-secondary btn-lg" %>
   </div>
 <% else %>
   <div class="container d-flex flex-column align-items-center">
-    <p>まずはLINEでログインして、今日の頑張りを記録しよう！</p>
-    <%= button_to "LINE Login", user_line_omniauth_authorize_path, method: :post, data: { turbo: false }, class: "btn btn-outline-secondary btn-lg" %>
+    <p>まずはLINEでログインして、今日のがんばりを記録しよう！</p>
+    <%= button_to "LINE Login", user_line_omniauth_authorize_path(pose_id: @pose.id), method: :post, params: { pose_id: @pose.id }, data: { turbo: false }, class: "btn btn-outline-secondary btn-lg" %>
   </div>
 <% end %>
