@@ -1,0 +1,50 @@
+<!--%= form_with (model:@diary, url:diaries_path, pose_id: @pose.id), local:true do |form| %-->
+<!--%= form_with(model: diary, local: true) do |form| %-->
+<%= form_with model: @diary do |form| %>
+
+  <!--ここ-->
+  <%= form.hidden_field :pose_id, value: @pose.id %> 
+  <div class="mb-3">
+    <%= form.label :date %>
+    <%= form.text_field :date, value: @diary.date, readonly: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :pose %>
+    <%= form.text_field :pose_name, value: @pose.japanese_name, readonly: true %>
+  </div>
+
+   <div class="mb-3">
+    <%= form.label :compatibility, 'ポーズとの相性' %>
+    <%= form.select :compatibility, options_for_select(['', '◎', '〇', '×']) %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :condition, '体調' %>
+    <%= form.select :condition, options_for_select(['', '◎', '〇', '×']) %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :feeling, '気分' %>
+    <%= form.select :feeling, options_for_select(['', '◎', '〇', '×']) %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :sleep, '睡眠' %>
+    <%= form.select :sleep, options_for_select(['', '◎', '〇', '×']) %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :weight, '体重' %>
+    <%= form.text_field :weight %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :memo, 'メモ' %>
+    <%= form.text_area :memo %>
+  </div>
+
+  <div>
+    <%= form.submit nil, class: "btn btn-outline-secondary btn-lg" %>
+  </div>
+<% end %>

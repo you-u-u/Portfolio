@@ -1,16 +1,22 @@
 class DiariesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_pose, only: %i[new create]
+  before_action :set_pose, only: %i[new]
   before_action :check_register_diary, only: %i[new create]
 
   def new
-    @diary = Diary.new(pose_id: @pose.id, date:Time.zone.today)
+    #binding.pry
+    @diary = Diary.new(pose_id: @pose.id, date:Date.today)
   end
 
   def create
+    
     @diary = current_user.diaries.build(diary_params)
-    @diary.pose = @pose
-    @diary.date = Time.zone.today
+    #binding.pry
+    #@diary.pose = @pose 
+    #@diary.date = Date.today
+
+    Rails.logger.debug params.inspect 
+    # ここ
     if @diary.save
       redirect_to diaries_path, success: "記録しました"
     else
@@ -30,13 +36,15 @@ class DiariesController < ApplicationController
   end
 
   def check_register_diary
-    if diary.where(user:current_user, date:Time.zone.today).exists?
+    if Diary.where(user:current_user, date:Time.zone.today).exists?
       redirect_to diaries_path, notice:"今日の頑張りは登録してあります！また明日も頑張りましょう！"
     end
   end
 
   def diary_params
-    params.require(:diary).permit(:compatibility, :condition, :feeling, :sleep, :memo, :weight)
+    params.require(:diary).permit(:date, :compatibility, :condition, :feeling, :sleep, :memo, :weight, :user_id, :pose_id)
+    # ここに:user_id, :pose_idを追加
+
   end
 
 end

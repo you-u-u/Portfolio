@@ -1,0 +1,11 @@
+<!-- app/views/diaries/index.html.erb -->
+<% if @diaries.present? %>
+  <% @diaries.each do |diary| %>
+    <div>
+      <h3><%= diary.pose.japanese_name %></h3>
+      <p>登録日: <%= diary.date %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>記録がありません。</p>
+<% end %>
