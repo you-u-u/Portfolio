@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
-    sessions: 'users/sessions'#ここLINEログイン
+    #sessions: 'users/sessions'#ここLINEログイン
     #omniauth_callbacks: "omniauth_callbacks"
   }
   devise_scope :user do
     delete 'logout', to: 'devise/sessions#destroy'
   end
   #ここLINEログイン
-  get 'users/auth/line', to: redirect('/users/auth/line')
+  #get 'users/auth/line', to: redirect('/users/auth/line')
   
   #delete 'logout', to: 'users/sessions#destroy' #ここログアウト
   

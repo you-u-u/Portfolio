@@ -3,7 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def line
     session[:pose_id] = params[:pose_id] #ここ
-    #put logger.debug "Session pose_id set in line method: #{session[:pose_id]}"
+    Rails.logger.debug "Session pose_id set in line method: #{session[:pose_id]}"
     #binding.pry
     basic_action 
   end
@@ -12,6 +12,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def basic_action
     #binding.pry
+    Rails.logger.debug("Received pose_id: #{params[:pose_id]}")
     @omniauth = request.env["omniauth.auth"]
     if @omniauth.present?
       @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
@@ -29,7 +30,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # 追加
 
     flash[:notice] = "ログインしました"
-    redirect_to new_diary_path(pose_id: pose_id)
+    redirect_to random_pose_path
+    #redirect_to new_diary_path(pose_id: pose_id)
     #redirect_to root_path
   end
 
