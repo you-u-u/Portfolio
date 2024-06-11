@@ -41,6 +41,6 @@
 <% else %>
   <div class="container d-flex flex-column align-items-center">
     <p>まずはLINEでログインして、今日のがんばりを記録しよう！</p>
-    <%= button_to "LINE Login", user_line_omniauth_authorize_path(pose_id: @pose.id), method: :post, params: { pose_id: @pose.id }, data: { turbo: false }, class: "btn btn-outline-secondary btn-lg" %>
+    <%= button_to "LINE Login", user_line_omniauth_authorize_path(pose_id: @pose.id), method: :post, data: { turbo: false }, class: "btn btn-outline-secondary btn-lg" %>
   </div>
 <% end %>
