@@ -1,11 +1,12 @@
-<!-- app/views/diaries/index.html.erb -->
-<% if @diaries.present? %>
-  <% @diaries.each do |diary| %>
-    <div>
-      <h3><%= diary.pose.japanese_name %></h3>
-      <p>登録日: <%= diary.date %></p>
+<%= month_calendar(attribute: :created_at, events: @diaries) do |date, diaries| %>
+
+  <%= date.day %>
+
+  <% diaries.each do |diary| %>
+    <div class="calender_event">
+      <%= link_to diary_path(diary) do %>
+        <h3 class="bi bi-flower3 text-danger ms-2"></h3>
+      <% end %>
     </div>
   <% end %>
-<% else %>
-  <p>記録がありません。</p>
 <% end %>
