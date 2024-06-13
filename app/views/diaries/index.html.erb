@@ -1,11 +1,11 @@
-<!-- app/views/diaries/index.html.erb -->
-<% if @diaries.present? %>
-  <% @diaries.each do |diary| %>
-    <div>
-      <h3><%= diary.pose.japanese_name %></h3>
-      <p>登録日: <%= diary.date %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center mt-4">
+      <h1>My Diary<i class="bi bi-vector-pen"></i></h1>
     </div>
-  <% end %>
-<% else %>
-  <p>記録がありません。</p>
-<% end %>
+  </div>
+
+  <div id="diaries_calendar">
+    <%= render "calendar", diaries: @diaries %>
+  </div>
+</div>

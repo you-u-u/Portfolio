@@ -1,5 +1,5 @@
 class DiariesController < ApplicationController
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!
   before_action :set_pose, only: %i[new]
   before_action :check_register_diary, only: %i[new create]
 
