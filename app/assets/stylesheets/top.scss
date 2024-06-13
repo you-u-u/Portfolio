@@ -51,3 +51,7 @@
   max-width: 100%;
   height: auto;
 }
+
+.table.table-striped {
+  margin-bottom: 0; /* カレンダーテーブルの下の余白を除去 */
+}
