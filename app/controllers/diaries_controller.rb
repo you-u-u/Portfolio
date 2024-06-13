@@ -11,12 +11,9 @@ class DiariesController < ApplicationController
   def create
     
     @diary = current_user.diaries.build(diary_params)
-    #binding.pry
-    #@diary.pose = @pose 
-    #@diary.date = Date.today
-
+    
     Rails.logger.debug params.inspect 
-    # ここ
+    
     if @diary.save
       redirect_to diaries_path, success: "記録しました"
     else

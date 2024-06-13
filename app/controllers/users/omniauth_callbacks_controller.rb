@@ -11,7 +11,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def basic_action
-    #binding.pry
     Rails.logger.debug("Received pose_id: #{params[:pose_id]}")
     @omniauth = request.env["omniauth.auth"]
     if @omniauth.present?
@@ -31,7 +30,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     flash[:notice] = "ログインしました"
     redirect_to random_pose_path
-    #redirect_to new_diary_path(pose_id: pose_id)
+    #redirect_to new_diary_path(pose_id: pose_id) #記録ページへ遷移
     #redirect_to root_path
   end
 

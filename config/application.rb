@@ -16,6 +16,9 @@ module Myapp
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    # change the beginning day of the week 
+    config.beginning_of_week = :sunday
+
     config.generators do |g|
       g.helper false             # helper ファイルを作成しない
       g.test_framework false     # test ファイルを作成しない
