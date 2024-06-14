@@ -11,9 +11,7 @@ class DiariesController < ApplicationController
   def create
     
     @diary = current_user.diaries.build(diary_params)
-    
-    Rails.logger.debug params.inspect 
-    
+        
     if @diary.save
       redirect_to diaries_path, success: "記録しました"
     else
@@ -26,6 +24,10 @@ class DiariesController < ApplicationController
     @diaries = current_user.diaries
   end
 
+  def show
+    @diary = Diary.find(params[:id])
+  end
+  
   private
 
   def set_pose
