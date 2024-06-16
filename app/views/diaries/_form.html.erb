@@ -1,6 +1,5 @@
 <%= form_with(model: @diary, local: true, class: 'container mt-4') do |form| %>
   <%= form.hidden_field :pose_id, value: @pose.id %>
-
   <div class="mb-3 row">
     <%= form.label :date, class: 'form-label col-sm-2 col-form-label' %>
     <div class="col-sm-9">
@@ -57,6 +56,7 @@
       <%= form.text_area :memo, class: 'form-control' %>
     </div>
   </div>
+  <p>1日1回記録できます</p>
 
   <div class="container d-flex flex-column align-items-center">
     <%= form.submit '記録する', class: 'btn btn-outline-secondary btn-lg', data: {turbo: false} %>

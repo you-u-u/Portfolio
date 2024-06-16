@@ -7,13 +7,11 @@ Rails.application.routes.draw do
     #omniauth_callbacks: "omniauth_callbacks"
   }
   devise_scope :user do
-    delete 'logout', to: 'devise/sessions#destroy'
+    delete 'logout', to: 'users/sessions#destroy'
   end
   #ここLINEログイン
   get 'users/auth/line', to: redirect('/users/auth/line')
-  
-  #delete 'logout', to: 'users/sessions#destroy' #ここログアウト
-  
+    
   resources :poses, only: [:show]
   get 'pose/random', to: 'poses#random', as: 'random_pose'
 

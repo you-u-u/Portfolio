@@ -24,10 +24,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     end
 
     pose_id = session[:pose_id]
-    Rails.logger.debug "Session pose_id retrieved in basic_action method: #{pose_id}" # セッションから取得したpose_idをログに出力
     session.delete(:pose_id)
-    # 追加
-
     flash[:notice] = "ログインしました"
     redirect_to random_pose_path
     #redirect_to new_diary_path(pose_id: pose_id) #記録ページへ遷移
