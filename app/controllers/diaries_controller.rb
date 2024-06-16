@@ -40,7 +40,8 @@ class DiariesController < ApplicationController
 
   def check_register_diary
     if Diary.where(user:current_user, date:Time.zone.today).exists?
-      redirect_to diaries_path, notice:"今日のがんばりは登録してあります！また明日も頑張りましょう！"
+      flash[:notice] = "今日のDiaryは登録してあります！また明日も頑張りましょう！"
+      redirect_to diaries_path
     end
   end
 
