@@ -6,16 +6,20 @@ class DiariesController < ApplicationController
   def new
     #binding.pry
     @diary = Diary.new(pose_id: @pose.id, date:Date.today)
+    #@pose = Pose.find(params[:pose_id])
   end
 
   def create
     
     @diary = current_user.diaries.build(diary_params)
+    @pose = Pose.find_by(id: diary_params[:pose_id])
         
     if @diary.save
-      redirect_to diaries_path, success: "記録しました"
+      redirect_to diaries_path, notice: "記録しました"
     else
-      flash.now[:danger] = "記録できませんでした"
+      flash.now[:alert] = "記録できませんでした"
+      
+      Rails.logger.debug(@diary.errors.full_messages.join(", "))
       render :new
     end
   end
@@ -36,7 +40,7 @@ class DiariesController < ApplicationController
 
   def check_register_diary
     if Diary.where(user:current_user, date:Time.zone.today).exists?
-      redirect_to diaries_path, notice:"今日の頑張りは登録してあります！また明日も頑張りましょう！"
+      redirect_to diaries_path, notice:"今日のがんばりは登録してあります！また明日も頑張りましょう！"
     end
   end
 
