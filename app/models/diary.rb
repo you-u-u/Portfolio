@@ -15,14 +15,15 @@ class Diary < ApplicationRecord
   private
   def only_one_diary_per_day
     cache_key = "user_#{user_id}_diary#{Date.today}"
+    binding.pry
     if Rails.cache.fetch(cache_key).nil?
       if Diary.where(user_id: user_id,date:Date.today).exists?
-        errors.add("今日の頑張りは登録してあります！また明日も頑張りましょう！")
+        errors.add(:base,"今日のDiaryは登録してあります！また明日も頑張りましょう！")
       else
         Rails.cache.write(cache_key, true)
       end
     else
-      errors.add("今日の頑張りは登録してあります！また明日も頑張りましょう！")
+      errors.add(:base, "今日のDiaryは登録してあります！また明日も頑張りましょう！！")
     end
   end
 end
