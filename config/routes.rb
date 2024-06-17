@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   root 'staticpages#top'
   
   devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks',
-    #sessions: 'users/sessions'#ここLINEログイン
-    #omniauth_callbacks: "omniauth_callbacks"
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   devise_scope :user do
     delete 'logout', to: 'users/sessions#destroy'
@@ -15,7 +13,7 @@ Rails.application.routes.draw do
   resources :poses, only: [:show]
   get 'pose/random', to: 'poses#random', as: 'random_pose'
 
-  resources :diaries, only: %i[new create index show]
+  resources :diaries, only: %i[new create index show edit update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

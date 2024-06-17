@@ -32,6 +32,20 @@ class DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
   end
   
+  def edit
+    @diary = current_user.diaries.find(params[:id])
+  end
+
+  def update
+    @diary = current_user.diaries.find(params[:id])
+    if @diary.update(diary_params)
+      redirect_to diary_path(diary), notice:"編集しました"
+    else
+      flash.now[:alert] = "編集できませんでした"
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_pose
