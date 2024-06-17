@@ -9,7 +9,7 @@
               <strong>行ったポーズ</strong>
             </div>
             <div class="col-md-9 fs-4 ms-5">
-              <p class="form-control-plaintext"><%= @diary.pose.japanese_name %></p>
+              <p class="form-control-plaintext"><%= link_to @diary.pose.japanese_name,pose_path(@diary.pose) %></p>
             </div>
           </div>
 
