@@ -18,7 +18,6 @@ class DiariesController < ApplicationController
       redirect_to diaries_path, notice: "記録しました"
     else
       flash.now[:alert] = "記録できませんでした"
-      
       Rails.logger.debug(@diary.errors.full_messages.join(", "))
       render :new
     end
@@ -34,12 +33,13 @@ class DiariesController < ApplicationController
   
   def edit
     @diary = current_user.diaries.find(params[:id])
+    @pose = @diary.pose
   end
 
   def update
     @diary = current_user.diaries.find(params[:id])
     if @diary.update(diary_params)
-      redirect_to diary_path(diary), notice:"編集しました"
+      redirect_to diary_path(@diary), notice:"編集しました"
     else
       flash.now[:alert] = "編集できませんでした"
       render :edit, status: :unprocessable_entity
@@ -61,8 +61,6 @@ class DiariesController < ApplicationController
 
   def diary_params
     params.require(:diary).permit(:date, :compatibility, :condition, :feeling, :sleep, :memo, :weight, :user_id, :pose_id)
-    # ここに:user_id, :pose_idを追加
-
   end
 
 end

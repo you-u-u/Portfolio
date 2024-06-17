@@ -1,5 +1,5 @@
-<%= form_with(model: @diary, local: true, class: 'container mt-4') do |form| %>
-  <%= form.hidden_field :pose_id, value: @pose.id %>
+<%= form_with(model: diary, local: true, class: 'container mt-4') do |form| %>
+  <%= form.hidden_field :pose_id, value: @pose&.id || @diary.pose.id %>
   <div class="mb-3 row">
     <%= form.label :date, class: 'form-label col-sm-2 col-form-label' %>
     <div class="col-sm-9">
@@ -10,7 +10,7 @@
   <div class="mb-3 row">
     <label class="form-label col-sm-2 col-form-label">ポーズ名</label>
     <div class="col-sm-9">
-      <div class="fs-5 form-control-plaintext"><%= @pose.japanese_name %></div>
+      <div class="fs-5 form-control-plaintext"><%= @pose&.japanese_name || @diary.pose.japanese_name %></div>
     </div>
   </div>
 
