@@ -32,12 +32,11 @@
     </div>
   </div>
 </div>
-<h5>yogaは完璧を求める必要はありません！<br>無理をせず、ちょっとだけがんばってみましょう♡</h5>
+<h5 class="text-center mt-4">yogaは完璧を求める必要はありません！<br>無理をせず、ちょっとだけがんばってみましょう♡</h5>
 <% if user_signed_in? %>
-  <div class="container d-flex flex-column-mt-3  align-items-center">
-    <p>今日のがんばりを記録しよう!</p>
-    <!--% binding.pry %-->
-    <%= link_to "登録", new_diary_path(pose_id: @pose.id), class: "btn btn-outline-secondary btn-lg" %>
+  <div class="container d-flex flex-column align-items-center mt-3">
+    <p class="text-center">今日のがんばりを記録しよう!</p>
+    <%= link_to "登録", new_diary_path(pose_id: @pose.id), class: "btn btn-outline-secondary btn-lg mt-2" %>
   </div>
 <% else %>
   <div class="container d-flex flex-column align-items-center">
