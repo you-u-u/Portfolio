@@ -39,11 +39,12 @@
 ### 技術スタック
 - Ruby 
 - Ruby on Rails
-- Tailwind CSS
+- bootstrap
 - JavaScript
 - PostgreSQL
-- Heroku
-- LINE ログイン
+- Render
+- DeviseおよびLINE ログイン
+- Simple_Calendar
 - LINE messenger API
 
 ## 機能の実装方針予定
