@@ -62,6 +62,13 @@ group :development, :test do
   gem "pry-rails"
 end
 
+# line_bot
+gem 'line-bot-api'
+
+# add sidekiq
+gem 'sidekiq'
+gem 'sidekiq-cron'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
