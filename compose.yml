@@ -7,7 +7,7 @@ services:
       TZ: Asia/Tokyo
       POSTGRES_PASSWORD: password
     volumes:
-      - postgresql_data:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/date
     ports:
       - 5432:5432
     healthcheck:
@@ -31,8 +31,16 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      db:
-        condition: service_healthy
+      - redis
+      - db
+      #　ここ変更
+      #db:
+       # condition: service_healthy
+  redis:
+    image: redis:6.2.6
+    ports:
+      - "6379:6379"
+ 
 volumes:
   bundle_data:
   postgresql_data:
