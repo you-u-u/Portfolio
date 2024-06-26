@@ -10,11 +10,12 @@ class LineNotifyService
     # 上で解析したURIを使ってPOSTリクエストのオブジェクトを生成
     request.content_type = 'application/json'
     # リクエストのコンテンツタイプをJSONに設定
-    request['Authorization'] = "Bearer #{ENV['LINE_CHANNEL_TOKEN']}"
+  
+    request['Authorization'] = "Bearer #{Rails.application.credentials['LINE_CHANNEL_TOKEN']}"
     # 環境変数から取得したLINEチャネルトークンを使用して、認証ヘッダーを設定
     request.body = JSON.dump({
                                to: uid,
-                               messages: [{ type: 'text', text: message }]
+                               messages: [message]
                              })
     # リクエストボディに、送信先のユーザー識別子と、送信するメッセージの内容をJSON形式で設定
 
@@ -33,13 +34,10 @@ class LineNotifyService
     case response
     when Net::HTTPSuccess
       Rails.logger.info 'LINE通知 送信成功'
-    when Net::HTTPUnauthorized
-      Rails.logger.error 'LINE通知 送信失敗: 認証エラー'
-    when Net::HTTPNotFound
-      Rails.logger.error 'LINE通知 送信失敗: リソースが見つかりません'
     else
-      Rails.logger.error "LINE通知 送信失敗: #{response.code} #{response.message}"
-      Rails.logger.error "レスポンスボディ: #{response.body}"
+      # レスポンスボディのエンコーディングをUTF-8に設定
+      error_message = response.body.force_encoding('UTF-8')
+      Rails.logger.error("LINE通知 送信失敗: #{error_message}")
     end
   end
 end
