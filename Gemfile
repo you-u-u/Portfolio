@@ -69,6 +69,8 @@ gem 'line-bot-api'
 gem 'sidekiq'
 gem 'sidekiq-cron'
 
+gem 'redis', '>= 4.0.1'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
