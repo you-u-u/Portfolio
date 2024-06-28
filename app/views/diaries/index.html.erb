@@ -1,9 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 text-center mt-4">
-      <h1>My Diary<i class="bi bi-vector-pen"></i></h1>
+    <div class="col-12 text-center mt-4 mb-3">
+      <h1><%= @user.name %>さんの Diary <i class="bi bi-vector-pen"></i></h1>
     </div>
   </div>
+  <%= form_with url: users_set_line_notification_path, method: :patch, local: true, id: 'line-notification-form' do %>
+    <div class="form-check form-switch form-check-reverse">
+      <%= check_box_tag :line_notification, '1', current_user.line_notification, class: 'form-check-input', id: 'line-toggle', onchange: 'this.form.submit();' %>
+      <%= label_tag :line_notification, '毎朝8時のLINE通知', class: 'form-check-label' %>
+    </div>
+  <% end %>
 
   <div id="diaries_calendar">
     <%= render "calendar", diaries: @diaries %>
