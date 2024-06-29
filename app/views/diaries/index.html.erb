@@ -1,17 +1,38 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center mt-4 mb-3">
-      <h1><%= @user.name %>さんの Diary <i class="bi bi-vector-pen"></i></h1>
+      <h4><%= @user.name %>さんの Diary <i class="bi bi-vector-pen"></i></h4>
     </div>
   </div>
   <%= form_with url: users_set_line_notification_path, method: :patch, local: true, id: 'line-notification-form' do %>
     <div class="form-check form-switch form-check-reverse">
       <%= check_box_tag :line_notification, '1', current_user.line_notification, class: 'form-check-input', id: 'line-toggle', onchange: 'this.form.submit();' %>
-      <%= label_tag :line_notification, '毎朝8時のLINE通知', class: 'form-check-label' %>
+      <%= label_tag :line_notification, "LINE通知設定", class: "form-check-label ms-3" %>
+      <i class="bi bi-question-circle ms-1 position-relative" data-bs-toggle="modal" data-bs-target="#lineNotificationModal" style="cursor: pointer;"></i>
     </div>
   <% end %>
+    
+  <div class="modal fade" id="lineNotificationModal" tabindex="-1" aria-labelledby="lineNotificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="lineNotificationModalLabel">LINE通知を設定すると？</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>毎朝8時にLINEでヨガポーズが届きます！<br>
+          忙しくてついつい忘れてしまう方は <br>
+          <%= link_to "こちら", "https://line.me/R/ti/p/@342edmsw" %>
+          から友だち追加して通知設定をONにしてください🌸</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div id="diaries_calendar">
+  <div id="diaries_calendar" class="mt-4">
     <%= render "calendar", diaries: @diaries %>
   </div>
 </div>
