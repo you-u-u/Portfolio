@@ -25,6 +25,7 @@ class DiariesController < ApplicationController
 
   def index
     @diaries = current_user.diaries
+    @user=current_user
   end
 
   def show

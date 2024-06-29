@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
   # LINEログイン
   get 'users/auth/line', to: redirect('/users/auth/line')
-    
+  
+  patch 'users/set_line_notification', to: 'users#set_line_notification'
+      
   resources :poses, only: [:show]
   get 'pose/random', to: 'poses#random', as: 'random_pose'
 

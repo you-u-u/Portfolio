@@ -4,7 +4,7 @@ class SendLineJob < ApplicationJob
   def perform
     User.find_each do |user|
       # 全ユーザーを対象にリマインダー通知を送信する
-      # next unless user.receive_reminder_notifications
+      next unless user.line_notification
       # ユーザーが通知を受け取る設定になっているかチェック
       # binding.pry
       reminder_message = generate_reminder_message(user)
