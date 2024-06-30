@@ -29,3 +29,13 @@ Sidekiq.configure_client do |config|
   }
   config.logger.level = Logger::DEBUG
 end
+
+class HardJob
+  include Sidekiq::Job
+
+  def perform(name, count)
+    # do something
+  end
+end
+
+HardJob.perform_async('bob', 5)
