@@ -6,10 +6,6 @@ Sidekiq.configure_server do |config|
   schedule_file = 'config/schedule.yml'
   # 定期的に実行するジョブのスケジュールを記述したYAMLファイルのパスを指定
 
-  if File.exist?(schedule_file) && Sidekiq.server?
-    Sidekiq::Cron::Job.load_from_hash YAML.load_file(schedule_file)
-  end
-
   config.redis = {
     url: ENV['REDIS_URL'],
     # Redisへの接続設定 ENV['REDIS_URL']は環境変数からRedisサーバーのURLを取得
