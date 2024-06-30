@@ -21,3 +21,11 @@ services:
     ports:
       - number: 3000 #追加
 
+services:
+  - name: sidekiq
+    environment:
+      SIDEKIQ_CONCURRENCY: 10
+      REDIS_URL: redis://red-cpr64c3qf0us7389fk9g:6379/0
+    ports:
+      - port: 6379
+        protocol: tcp

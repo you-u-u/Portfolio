@@ -1,0 +1,1 @@
+Rails.application.config.host_url = ENV['HOST_URL']
