@@ -5,6 +5,11 @@ Sidekiq.configure_server do |config|
 # Sidekiqサーバーの設定を開始 ブロック内の設定は、ジョブを実行するサーバー側で適用
   schedule_file = 'config/schedule.yml'
   # 定期的に実行するジョブのスケジュールを記述したYAMLファイルのパスを指定
+
+  if File.exist?(schedule_file) && Sidekiq.server?
+    Sidekiq::Cron::Job.load_from_hash YAML.load_file(schedule_file)
+  end
+
   config.redis = {
     url: ENV['REDIS_URL'],
     # Redisへの接続設定 ENV['REDIS_URL']は環境変数からRedisサーバーのURLを取得
@@ -29,13 +34,3 @@ Sidekiq.configure_client do |config|
   }
   config.logger.level = Logger::DEBUG
 end
-
-class HardJob
-  include Sidekiq::Job
-
-  def perform(name, count)
-    # do something
-  end
-end
-
-HardJob.perform_async('bob', 5)

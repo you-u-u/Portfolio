@@ -1,3 +1,4 @@
 send_line_job:
-  cron: "50 11 * * *"
+  cron: "0 19 * * *"
   class: "SendLineJob"
+  queue: default
