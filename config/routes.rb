@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'staticpages#top'
-  
+  get 'privacy_policy', to: 'staticpages#privacy_policy'
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   end
   # LINEログイン
   get 'users/auth/line', to: redirect('/users/auth/line')
-  
+  # LINE通知設定
   patch 'users/set_line_notification', to: 'users#set_line_notification'
       
   resources :poses, only: [:show]
