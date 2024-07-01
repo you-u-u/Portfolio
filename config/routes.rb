@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'staticpages#top'
   get 'privacy_policy', to: 'staticpages#privacy_policy'
+  get 'term', to: 'staticpages#term'
 
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
