@@ -41,8 +41,8 @@ class SendLineJob < ApplicationJob
 
   def pose_image_url(pose)
     # binding.pry
-    host = Rails.application.config.host
-    ActionController::Base.helpers.asset_url(pose.image, host:host).force_encoding('UTF-8')
+    host = Rails.application.config.host_url
+    ActionController::Base.helpers.asset_url(pose.image, host:host)
   end
 
   def host_url
