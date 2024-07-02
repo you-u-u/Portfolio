@@ -55,3 +55,4 @@ class SendLineJob < ApplicationJob
   def host_url
     Rails.application.config.host_url
   end
+end
