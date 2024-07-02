@@ -40,12 +40,11 @@ class SendLineJob < ApplicationJob
   end
 
   def pose_image_url(pose)
-    # binding.pry
-    host = Rails.application.config.host_url
-    ActionController::Base.helpers.asset_url(pose.image, host:host)
+    host = Rails.application.routes.default_url_options[:host]
+    rails_blob_url(pose.image, host: host)
   end
 
   def host_url
-    Rails.application.config.host_url
+    Rails.application.routes.default_url_options[:host]
   end
 end
