@@ -95,6 +95,5 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
   config.hosts << 'www.yoga-diary-app.com'
-  config.action_mailer.default_url_options = { host: 'www.yoga-diary-app.com' }
-  Rails.application.routes.default_url_options[:host] = 'www.yoga-diary-app.com'
+  config.host_url = 'https://www.yoga-diary-app.com'
 end
