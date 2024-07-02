@@ -1,4 +1,5 @@
 class SendLineJob < ApplicationJob
+  include Rails.application.routes.url_helpers
   queue_as :default
 
   def perform
@@ -40,16 +41,12 @@ class SendLineJob < ApplicationJob
   end
 
   def pose_image_url(pose)
-    host = Rails.application.routes.default_url_options[:host]
-    begin
-      ActionController::Base.helpers.asset_url(pose.image, host: host)
-    rescue Sprockets::Rails::Helper::AssetNotFound => e
-      Rails.logger.error "Asset not found: #{pose.image}"
-      ActionController::Base.helpers.image_url('default_image.jpg', host: host)
-    end
+    # binding.pry
+    host = host_url
+    ActionController::Base.helpers.asset_url(pose.image, host: host)
   end
 
   def host_url
-    Rails.application.routes.default_url_options[:host]
+    Rails.application.config.host_url
   end
 end
