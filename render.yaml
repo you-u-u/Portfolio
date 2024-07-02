@@ -7,7 +7,7 @@ databases:
 services:
   - type: web
     name: Portfolio
-    env: docker
+    env: ruby
     region: singapore
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
