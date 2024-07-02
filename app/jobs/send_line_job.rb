@@ -53,6 +53,6 @@ class SendLineJob < ApplicationJob
   end
 
   def host_url
-    Rails.application.config.host_url
+    Rails.application.config.host_url || 'https://www.yoga-diary-app.com'
   end
 end
