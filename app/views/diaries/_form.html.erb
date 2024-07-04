@@ -3,7 +3,7 @@
   <div class="mb-3 row">
     <%= form.label :date, class: 'form-label col-sm-2 col-form-label' %>
     <div class="col-sm-9">
-      <%= form.text_field :date, value: @diary.date, readonly: true, class: 'form-control-plaintext fs-5' %>
+      <%= form.text_field :date, value: @diary.date.strftime('%Y/%m/%d'), readonly: true, class: 'form-control-plaintext fs-5' %>
     </div>
   </div>
 
@@ -53,7 +53,7 @@
   <div class="mb-3 row">
     <%= form.label :memo, 'メモ', class: 'form-label col-sm-3 col-form-label' %>
     <div class="col-sm-9">
-      <%= form.text_area :memo, class: 'form-control' %>
+      <%= form.text_area :memo, class: 'form-control', maxlength: 150 %>
     </div>
   </div>
   <p>1日1回記録できます</p>

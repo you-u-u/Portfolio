@@ -40,6 +40,7 @@ class DiariesController < ApplicationController
   def update
     @diary = current_user.diaries.find(params[:id])
     if @diary.update(diary_params)
+      binding.pry
       redirect_to diary_path(@diary), notice:"編集しました"
     else
       flash.now[:alert] = "編集できませんでした"
@@ -55,7 +56,7 @@ class DiariesController < ApplicationController
 
   def check_register_diary
     if Diary.where(user:current_user, date:Time.zone.today).exists?
-      flash[:notice] = "今日のDiaryは登録してあります！また明日も頑張りましょう！"
+      flash[:alert] = "今日のDiaryは登録してあります！また明日も頑張りましょう！"
       redirect_to diaries_path
     end
   end
