@@ -71,6 +71,8 @@ gem 'sidekiq-cron'
 
 gem 'redis', '>= 4.0.1'
 
+gem "meta-tags"
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
