@@ -5,7 +5,7 @@ module ApplicationHelper
       title: 'Yoga Diary',
       reverse: true,
       charset: 'utf-8',
-      description: '毎日1つのポーズを提供し記録することで、Yoga習慣をサポート',
+      description: '毎日のYogaで体と心をリフレッシュ！',
       keywords: 'スポーツ,ヨガ,日記',
       canonical: request.original_url,
       separator: '|',
@@ -19,6 +19,8 @@ module ApplicationHelper
         local: 'ja-JP'
       },
       twitter: {
+        site_name: :site,
+        title: :title,
         card: 'summary_large_image', 
         image: image_url('ogp.png') 
       }
