@@ -2,8 +2,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :authenticate_user!
 
   def line
-    session[:pose_id] = params[:pose_id] #ここ
-    Rails.logger.debug "Session pose_id set in line method: #{session[:pose_id]}"
+    #cookies[:pose_id] = params[:pose_id] 
+    session[:pose_id] = request.env['omniauth.params']['pose_id']
+    Rails.logger.debug "session pose_id set in line method: #{session[:pose_id]}"
     #binding.pry
     basic_action 
   end
@@ -11,7 +12,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def basic_action
-    Rails.logger.debug("Received pose_id: #{params[:pose_id]}")
+    pose_id = session[:pose_id]
+    Rails.logger.debug("Received session pose_id: #{session[:pose_id]}")
     @omniauth = request.env["omniauth.auth"]
     if @omniauth.present?
       @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
@@ -23,10 +25,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in(:user, @profile)
     end
 
-    pose_id = session[:pose_id]
-    session.delete(:pose_id)
     flash[:notice] = "ログインしました"
-    redirect_to random_pose_path
+    if pose_id.present?
+      redirect_to pose_path(pose_id)
+    else
+      redirect_to random_pose_path
+    end
+    session.delete(:pose_id)
+
     #redirect_to new_diary_path(pose_id: pose_id) #記録ページへ遷移
     #redirect_to root_path
   end
