@@ -15,6 +15,9 @@
     font-size: 2rem;
     color: rgb(48, 47, 47);
 
+    @media screen and (max-width: 767px) {
+      font-size: 2.0rem;
+    }
   }
   .top-start-botton {
     position: absolute;
@@ -22,6 +25,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .top-inner-text {
+    font-size: 2rem;
+  }
+
+  .top-start-button {
+    top: 70%;
   }
 }
 
@@ -35,8 +48,8 @@
   object-fit: contain;
 }
 
-.logo {
-  max-width: 68px;
+.navbar-logo  {
+  max-width: 120px;
   height: auto;
 }
 
