@@ -15,7 +15,7 @@ class DiariesController < ApplicationController
     @pose = Pose.find_by(id: diary_params[:pose_id])
         
     if @diary.save
-      redirect_to diaries_path, notice: "記録しました"
+      redirect_to diary_path(@diary), notice: "記録しました"
     else
       flash.now[:alert] = "記録できませんでした"
       Rails.logger.debug(@diary.errors.full_messages.join(", "))

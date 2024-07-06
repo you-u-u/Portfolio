@@ -66,9 +66,17 @@
           </div>
         </div>
       </article>
+      <div class="d-flex  justify-content-end">
+        <p class="mb-0 me-3">がんばりを</p>
+        <% tweet_text = "今日は#{@diary.pose.japanese_name} でリフレッシュ！" %>
+        <% tweet_url = pose_url(@diary.pose) %>
+        <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}", target: '_blank', style: 'text-decoration: none;' do %>  
+          <i class="bi bi-twitter" style="font-size: 1.5em; color: #3399FF;"></i> シェア
+        <% end %>
+      </div>
     </div>
     <div class="container d-flex justify-content-center mt-4">
-      <%= link_to '戻る', diaries_path, class: 'btn btn-outline-secondary btn-lg me-2' %>
+      <%= link_to 'My Diary', diaries_path, class: 'btn btn-outline-secondary btn-lg me-2' %>
       <%= link_to '編集する', edit_diary_path, class: 'btn btn-outline-secondary btn-lg' %>
     </div>
   </div>
