@@ -40,7 +40,6 @@ class DiariesController < ApplicationController
   def update
     @diary = current_user.diaries.find(params[:id])
     if @diary.update(diary_params)
-      binding.pry
       redirect_to diary_path(@diary), notice:"編集しました"
     else
       flash.now[:alert] = "編集できませんでした"
