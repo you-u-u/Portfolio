@@ -1,3 +1,5 @@
+<% content_for(:title, @diary.date) %>
+<meta name="title" content="<%= yield(:title) %>">
 <div class="container pt-5">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
@@ -69,7 +71,7 @@
       <div class="d-flex  justify-content-end">
         <p class="mb-0 me-3">がんばりを</p>
         <% app_name="Yoga Diary" %>
-        <% tweet_text="今日は#{@diary.pose.japanese_name} でリフレッシュ！" %>
+        <% tweet_text="今日は#{@diary.pose.japanese_name} でリフレッシュ！ #YogaDiary " %>
         <% tweet_url=pose_url(@diary.pose) %>
         <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}", target: '_blank', style: 'text-decoration: none;' do %>  
           <i class="bi bi-twitter" style="font-size: 1.5em; color: #3399FF;"></i> シェア
