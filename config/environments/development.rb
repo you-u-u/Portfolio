@@ -78,6 +78,5 @@ Rails.application.configure do
   config.host = 'https://083d-14-8-97-194.ngrok-free.app/'
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
-  config.hosts << "083d-14-8-97-194.ngrok-free.app"
-  
+  config.hosts << "dfad-14-8-97-194.ngrok-free.app"
 end

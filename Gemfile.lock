@@ -121,6 +121,14 @@ GEM
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
+    ffi (1.17.0-aarch64-linux-gnu)
+    ffi (1.17.0-arm-linux-gnu)
+    ffi (1.17.0-arm64-darwin)
+    ffi (1.17.0-x86-linux-gnu)
+    ffi (1.17.0-x86_64-darwin)
+    ffi (1.17.0-x86_64-linux-gnu)
+    font-awesome-sass (6.5.2)
+      sassc (~> 2.0)
     fugit (1.11.0)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
@@ -275,6 +283,8 @@ GEM
     rexml (3.2.8)
       strscan (>= 3.0.9)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (4.21.1)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
@@ -346,6 +356,7 @@ DEPENDENCIES
   debug
   devise
   dotenv-rails
+  font-awesome-sass
   jbuilder
   jsbundling-rails
   line-bot-api
