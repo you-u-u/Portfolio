@@ -68,13 +68,13 @@
           </div>
         </div>
       </article>
-      <div class="d-flex  justify-content-end">
+      <div class="d-flex justify-content-end align-items-center">
         <p class="mb-0 me-3">がんばりを</p>
         <% app_name="Yoga Diary" %>
         <% tweet_text="今日は#{@diary.pose.japanese_name} でリフレッシュ！ #YogaDiary " %>
         <% tweet_url=pose_url(@diary.pose) %>
         <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}", target: '_blank', style: 'text-decoration: none;' do %>  
-          <i class="bi bi-twitter" style="font-size: 1.5em; color: #3399FF;"></i> シェア
+          <i class="fa-brands fa-square-x-twitter" style="font-size: 1.5em;"></i> シェア
         <% end %>
       </div>
     </div>
