@@ -6,18 +6,19 @@ import * as bootstrap from "bootstrap"
 import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
   const swiperContainer = document.querySelector('.swiper-container');
   if (swiperContainer) {
     const swiper = new Swiper(swiperContainer, {
       slidesPerView: 'auto',
-      spaceBetween: 30,
+      spaceBetween: 20,
       loop: true,
       autoplay: {
-        delay: 2500,
+        delay: 0,
         disableOnInteraction: false,
       },
-      speed: 600,
+      speed: 5000,
+      centeredSlides: true,
     });
   } else {
     console.error('Swiper container not found!');
