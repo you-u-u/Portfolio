@@ -21,8 +21,10 @@ Rails.application.routes.draw do
 
   # Sidekiq job 管理画面
   require 'sidekiq/web'
-  mount Sidekiq::Web => "/sidekiq"
+  mount Sidekiq::Web => '/sidekiq'
 
+  # エラー画面カスタマイズ
+  match '*path', to: 'application#routing_error', via: :all
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
