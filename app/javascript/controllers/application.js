@@ -6,4 +6,9 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
-export { application }
+document.addEventListener('turbo:load', () => {
+  const titleElement = document.querySelector('meta[name="title"]');
+  if (titleElement) {
+    document.title = titleElement.content;
+  }
+});
