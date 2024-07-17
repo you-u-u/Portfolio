@@ -44,7 +44,7 @@ class SendLineJob < ApplicationJob
     # binding.pry
     host = host_url
     url = ActionController::Base.helpers.asset_url(pose.image, host: host)
-    unless url =~ /\A#{URI::regexp(['http', 'https'])}\z/
+    unless /\A#{URI::regexp(['http', 'https'])}\z/.match?(url)
       Rails.logger.error "Generated invalid URL: #{url}"
       raise "Generated invalid URL: #{url}"
     end
