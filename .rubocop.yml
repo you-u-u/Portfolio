@@ -21,7 +21,6 @@ AllCops:
 Metrics:
   Enabled: false
 
-
 Layout/LineLength:
   Enabled: false
 
@@ -65,4 +64,7 @@ Rails/I18nLocaleTexts:
   Enabled: false
 
 Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+RSpec/MultipleExpectations:
   Enabled: false
