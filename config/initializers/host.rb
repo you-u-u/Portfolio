@@ -1,1 +1,1 @@
-Rails.application.config.host_url = ENV['HOST_URL']
+Rails.application.config.host_url = ENV.fetch('HOST_URL', nil)
