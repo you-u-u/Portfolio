@@ -3,14 +3,25 @@ class DiariesController < ApplicationController
   before_action :set_pose, only: %i[new]
   before_action :check_register_diary, only: %i[new create]
 
+  def index
+    @diaries = current_user.diaries
+    @user=current_user
+  end
+
+  def show
+    @diary = Diary.find(params[:id])
+  end
+
   def new
-    #binding.pry
-    @diary = Diary.new(pose_id: @pose.id, date:Date.today)
-    #@pose = Pose.find(params[:pose_id])
+    @diary = Diary.new(pose_id: @pose.id, date:Time.zone.today)
+  end
+
+  def edit
+    @diary = current_user.diaries.find(params[:id])
+    @pose = @diary.pose
   end
 
   def create
-    
     @diary = current_user.diaries.build(diary_params)
     @pose = Pose.find_by(id: diary_params[:pose_id])
         
@@ -21,21 +32,7 @@ class DiariesController < ApplicationController
       Rails.logger.debug(@diary.errors.full_messages.join(", "))
       render :new
     end
-  end
-
-  def index
-    @diaries = current_user.diaries
-    @user=current_user
-  end
-
-  def show
-    @diary = Diary.find(params[:id])
-  end
-  
-  def edit
-    @diary = current_user.diaries.find(params[:id])
-    @pose = @diary.pose
-  end
+  end  
 
   def update
     @diary = current_user.diaries.find(params[:id])
@@ -54,7 +51,7 @@ class DiariesController < ApplicationController
   end
 
   def check_register_diary
-    if Diary.where(user:current_user, date:Time.zone.today).exists?
+    if Diary.exists?(user:current_user, date:Time.zone.today)
       flash[:alert] = "今日のDiaryは登録してあります！また明日も頑張りましょう！"
       redirect_to diaries_path
     end

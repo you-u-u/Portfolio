@@ -2,10 +2,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :authenticate_user!
 
   def line
-    #cookies[:pose_id] = params[:pose_id] 
     session[:pose_id] = request.env['omniauth.params']['pose_id']
-    Rails.logger.debug "session pose_id set in line method: #{session[:pose_id]}"
-    #binding.pry
+    Rails.logger.debug { "session pose_id set in line method: #{session[:pose_id]}" }
     basic_action 
   end
 
@@ -13,7 +11,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def basic_action
     pose_id = session[:pose_id]
-    Rails.logger.debug("Received session pose_id: #{session[:pose_id]}")
+    Rails.logger.debug { "Received session pose_id: #{session[:pose_id]}" }
     @omniauth = request.env["omniauth.auth"]
     if @omniauth.present?
       @profile = User.find_or_initialize_by(provider: @omniauth["provider"], uid: @omniauth["uid"])
