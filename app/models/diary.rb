@@ -2,8 +2,6 @@ class Diary < ApplicationRecord
   belongs_to :user
   belongs_to :pose
 
-  validates :user_id, presence: true
-  validates :pose_id, presence: true
   validates :weight, numericality: {greater_than: 0}, allow_nil: true
   validates :memo, length: {maximum: 150}
   validate :only_one_diary_per_day
