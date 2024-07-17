@@ -4,10 +4,10 @@ RSpec.describe Diary, type: :model do
   describe 'バリデーションチェック' do
     let(:user) { create(:user) }
     let(:pose) { create(:pose) }
-    let(:date) { Date.today }
+    let(:date) { Time.zone.today }
 
 
-    context 'ユーザーがログインしているとき' do
+    context 'when user is logged in' do
       it '設定したすべてのバリデーションが機能しているか' do
         diary=build(:diary,user: user, pose: pose)
         expect(diary).to be_valid
@@ -15,15 +15,15 @@ RSpec.describe Diary, type: :model do
       end
 
       it 'user_idがない場合にバリデーションが機能してinvalidになるか' do
-        diary_without_user_id=build(:diary, pose: pose, date: date)
-        expect(diary_without_user_id).to be_invalid
-        expect(diary_without_user_id.errors[:user_id]).to eq(["can't be blank"])      
+        diary_without_user=build(:diary, user:nil, pose: pose)
+        expect(diary_without_user).to be_invalid
+        expect(diary_without_user.errors[:user]).to include("must exist")      
       end
 
       it 'pose_idがない場合にバリデーションが機能してinvalidになるか' do
-        diary_without_pose_id=build(:diary, pose_id:nil)
-        expect(diary_without_pose_id).to be_invalid
-        expect(diary_without_pose_id.errors[:pose_id]).to eq(["can't be blank"])
+        diary_without_pose=build(:diary, user: user,pose:nil)
+        expect(diary_without_pose).to be_invalid
+        expect(diary_without_pose.errors[:pose]).to include("must exist") 
       end
 
       it 'weightが0以下の場合にバリデーションが機能してinvalidになるか' do
