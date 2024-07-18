@@ -12,3 +12,4 @@ document.addEventListener('turbo:load', () => {
     document.title = titleElement.content;
   }
 });
+export { application }
