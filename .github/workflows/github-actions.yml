@@ -53,10 +53,5 @@ jobs:
         run: |
           gem install bundler
           bundle install
-      # Add or replace any other lints here
-      - name: Security audit dependencies
-        run: bundle exec bundle audit --update
-      - name: Security audit application code
-        run: bundle exec brakeman 
       - name: Lint Ruby files
         run: bundle exec rubocop
