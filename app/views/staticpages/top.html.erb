@@ -10,15 +10,17 @@
 </div>
 
 <!-- Slider main container -->
-<div class="swiper-container">
-  <div class="swiper-wrapper">
-    <% @poses.each do |pose| %>
-      <div class="swiper-slide">
-        <%= link_to pose_path(pose) do %>
-          <%= image_tag pose.image, class: "card-img-top" %>
-        <% end %>
-      </div>
-    <% end %>
+<div data-controller="swiper">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <% @poses.each do |pose| %>
+        <div class="swiper-slide">
+          <%= link_to pose_path(pose) do %>
+            <%= image_tag pose.image, class: "card-img-top" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 
