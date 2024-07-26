@@ -10,7 +10,7 @@ class LineNotifyService
     # 上で解析したURIを使ってPOSTリクエストのオブジェクトを生成
     request.content_type = 'application/json'
     # リクエストのコンテンツタイプをJSONに設定
-  
+
     request['Authorization'] = "Bearer #{Rails.application.credentials['LINE_CHANNEL_TOKEN']}"
     # 環境変数から取得したLINEチャネルトークンを使用して、認証ヘッダーを設定
     request.body = JSON.dump({

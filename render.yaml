@@ -20,5 +20,5 @@ services:
       - key: RAILS_MASTER_KEY
         sync: false
     ports:
-      - number: 3000 #追加
+      - number: 3000 
 

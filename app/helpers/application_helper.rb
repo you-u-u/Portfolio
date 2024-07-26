@@ -1,6 +1,5 @@
 module ApplicationHelper
-
-  def default_meta_tags 
+  def default_meta_tags
     {
       site: 'Yoga Diary',
       title: 'Yoga Diary',
@@ -16,14 +15,14 @@ module ApplicationHelper
         description: :description,
         type: 'website',
         url: request.original_url,
-        image: image_url('ogp.png'), 
+        image: image_url('ogp.png'),
         local: 'ja-JP'
       },
       twitter: {
         site_name: :site,
         title: :title,
-        card: 'summary_large_image', 
-        image: image_url('ogp.png') 
+        card: 'summary_large_image',
+        image: image_url('ogp.png')
       }
     }
   end
