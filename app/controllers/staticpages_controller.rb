@@ -2,7 +2,7 @@ class StaticpagesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def top
-    @poses=Pose.all
+    @poses = Pose.all
   end
 
   def privacy_policy; end
