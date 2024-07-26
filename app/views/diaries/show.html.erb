@@ -4,14 +4,16 @@
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <h1 class="text-center"><%= @diary.date.strftime('%Y/%m/%d') %></h1>
-      <article class="card">
+      <article class="card mt-4 mb-3">
         <div class="card-body">
-          <div class="row mb-4">
+          <div class="row mt-2 mb-3">
             <div class="col-md-3">
               <strong>行ったポーズ</strong>
             </div>
             <div class="col-md-9 fs-4 ms-5">
-              <p class="form-control-plaintext"><%= link_to @diary.pose.japanese_name,pose_path(@diary.pose) %></p>
+              <p class="form-control-plaintext">
+                <%= link_to @diary.pose.japanese_name,pose_path(@diary.pose), style: "color: #333333;" %>
+              </p>
             </div>
           </div>
 
@@ -69,16 +71,16 @@
         </div>
       </article>
       <div class="d-flex justify-content-end align-items-center">
-        <p class="mb-0 me-3">がんばりを</p>
+        がんばりを 
         <% app_name="Yoga Diary" %>
         <% tweet_text="今日は#{@diary.pose.japanese_name} でリフレッシュ！ #YogaDiary " %>
         <% tweet_url=pose_url(@diary.pose) %>
-        <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}", target: '_blank', style: 'text-decoration: none;' do %>  
+        <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode(tweet_text)}&url=#{ERB::Util.url_encode(tweet_url)}", target: '_blank', class: 'custom-link' do %>  
           <i class="fa-brands fa-square-x-twitter" style="font-size: 1.5em;"></i> シェア
         <% end %>
       </div>
     </div>
-    <div class="container d-flex justify-content-center mt-4">
+    <div class="container d-flex justify-content-center pt-5 pb-3">
       <%= link_to 'My Diary', diaries_path, class: 'btn btn-outline-secondary btn-lg me-2' %>
       <%= link_to '編集する', edit_diary_path, class: 'btn btn-outline-secondary btn-lg' %>
     </div>

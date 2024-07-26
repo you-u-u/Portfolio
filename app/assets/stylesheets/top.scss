@@ -1,3 +1,18 @@
+body {
+  min-height: 100vh;
+  background-color:#f1f0e3;
+  position: relative;
+  padding-bottom: 120px;
+  box-sizing: border-box;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  background-color: #f1f0e3;
+  width: 100%;
+}
+
 .top-wrapper {
   background-image: url("TOP.png");
   height: calc(100vh - 134px);
@@ -19,7 +34,7 @@
       font-size: 2rem;
     }
   }
-  .top-start-botton {
+  .top-start-button {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -38,6 +53,7 @@
 }
 
 .main-content {
+  flex: 1;
   background-color:#f1f0e3;
 }
 
@@ -45,6 +61,7 @@
   width: 330px;
   height: 350px;
   object-fit: contain;
+  border-radius: 15px; 
 }
 
 .swiper-container {
@@ -111,9 +128,25 @@
   background-color: #eae7e2;
   border-radius: 15px; 
   border: none; 
+}
 
+.custom-link {
+  color: #333333 ;
+  text-decoration: none;
+}
+
+.calendar-container {
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+}
+
+.simple-calendar td {
+  height: 75px;
+  vertical-align: top;
 }
 
 .table.table-striped {
-  margin-bottom: 0; /* カレンダーテーブルの下の余白を除去 */
+  margin-bottom: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
