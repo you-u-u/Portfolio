@@ -14,8 +14,7 @@ class Diary < ApplicationRecord
   private
 
   def only_one_diary_per_day
-    return unless Diary.where(user_id: user_id, date: date).where.not(id: id).exists?
-
+    return unless Diary.where(user_id: user_id, date: date).where.not(uuid: uuid).exists?
     errors.add(:base, '今日のDiaryは登録してあります！また明日も頑張りましょう！')
   end
 end
