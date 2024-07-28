@@ -9,7 +9,7 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @diary = Diary.find(params[:id])
+    @diary = current_user.diaries.find(params[:id])
   end
 
   def new

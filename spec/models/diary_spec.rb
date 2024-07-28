@@ -9,7 +9,7 @@ RSpec.describe Diary, type: :model do
 
     context 'when user is logged in' do
       it '設定したすべてのバリデーションが機能しているか' do
-        diary=build(:diary,user: user, pose: pose)
+        diary=build(:diary,user: user, pose: pose, date: date)
         expect(diary).to be_valid
         expect(diary.errors).to be_empty
       end
@@ -43,6 +43,12 @@ RSpec.describe Diary, type: :model do
         diary_of_same_day=build(:diary, user: user, pose: pose, date:date)
         expect(diary_of_same_day).to be_invalid
         expect(diary_of_same_day.errors[:base]).to eq(["今日のDiaryは登録してあります！また明日も頑張りましょう！"])
+      end
+
+      it '当日以外の日でdiaryが登録できない' do
+        diary=build(:diary, date: Date.yesterday)
+        expect(diary).to be_invalid
+        expect(diary.errors[:date]).to eq(["当日分のみ登録できます"]) 
       end
     end
   end   
