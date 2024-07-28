@@ -32,9 +32,7 @@ jobs:
           gem install bundler
           bundle install
       - name: Set up PostgreSQL
-        run: |
-          sudo apt-get install postgresql-client
-          psql -U rails -h localhost -d rails_test -c "CREATE EXTENSION IF NOT EXISTS pgcrypto"      
+        run: psql -U rails -h localhost -d rails_test -c "CREATE EXTENSION IF NOT EXISTS pgcrypto"      
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Run tests
