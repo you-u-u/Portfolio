@@ -9,7 +9,7 @@ class DiariesController < ApplicationController
   end
 
   def show
-    @diary = Diary.find(params[:id])
+    @diary = current_user.diaries.find(params[:id])
   end
 
   def new
@@ -52,7 +52,6 @@ class DiariesController < ApplicationController
 
   def check_register_diary
     return unless Diary.exists?(user: current_user, date: Time.zone.today)
-
     flash[:alert] = '今日のDiaryは登録してあります！また明日も頑張りましょう！'
     redirect_to diaries_path
   end

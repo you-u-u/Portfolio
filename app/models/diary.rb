@@ -5,6 +5,7 @@ class Diary < ApplicationRecord
   validates :weight, numericality: { greater_than: 0 }, allow_nil: true
   validates :memo, length: { maximum: 150 }
   validate :only_one_diary_per_day
+  validate :register_today
 
   enum compatibility: { excellent: '◎', good: '〇', poor: '×' }, _prefix: true
   enum condition: { excellent: '◎', good: '〇', poor: '×' }, _prefix: true
@@ -15,6 +16,12 @@ class Diary < ApplicationRecord
 
   def only_one_diary_per_day
     return unless Diary.where(user_id: user_id, date: date).where.not(uuid: uuid).exists?
-    errors.add(:base, '今日のDiaryは登録してあります！また明日も頑張りましょう！')
+    errors.add(:base, '今日のDiaryは登録してあります！明日も頑張りましょう！')
+  end
+
+  def register_today
+    if date != Date.today
+      errors.add(:date, '当日分のみ登録できます')
+    end
   end
 end
