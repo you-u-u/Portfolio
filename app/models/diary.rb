@@ -2,6 +2,8 @@ class Diary < ApplicationRecord
   belongs_to :user
   belongs_to :pose
 
+  before_create -> { self.uuid = SecureRandom.uuid }
+
   validates :weight, numericality: { greater_than: 0 }, allow_nil: true
   validates :memo, length: { maximum: 150 }
   validate :only_one_diary_per_day
