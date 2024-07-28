@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_27_235111) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_28_011040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "diaries", force: :cascade do |t|
+  create_table "diaries", primary_key: "uuid", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.date "date"
     t.bigint "pose_id", null: false
     t.bigint "user_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_235111) do
     t.datetime "updated_at", null: false
     t.index ["pose_id"], name: "index_diaries_on_pose_id"
     t.index ["user_id"], name: "index_diaries_on_user_id"
+    t.index ["uuid"], name: "index_diaries_on_uuid", unique: true
   end
 
   create_table "poses", force: :cascade do |t|
