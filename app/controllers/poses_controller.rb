@@ -9,4 +9,8 @@ class PosesController < ApplicationController
   def show
     @pose = Pose.find(params[:id])
   end
+
+  def bookmarks
+    @bookmark_poses = current_user.bookmark_poses.includes(:user).order(created_at: :desc)
+  end
 end
