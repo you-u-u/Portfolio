@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     collection do
       get 'bookmarks'
     end
-  endc
+  end
   get 'pose/random', to: 'poses#random', as: 'random_pose'
 
   resources :diaries, only: %i[new create index show edit update]
