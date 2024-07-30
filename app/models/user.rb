@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :diaries, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
-  has_many :Bookmark_poses, through: :bookmarks, source: :pose
+  has_many :bookmark_poses, through: :bookmarks, source: :pose
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -28,5 +28,17 @@ class User < ApplicationRecord
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     save!
+  end
+
+  def bookmark(pose)
+    bookmark_poses << pose
+  end
+
+  def unbookmark(pose)
+    bookmark_poses.destroy(pose)
+  end
+
+  def bookmark?(pose)
+    bookmark_poses.include?(pose)
   end
 end
