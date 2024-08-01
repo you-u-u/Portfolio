@@ -1,0 +1,3 @@
+<%= link_to bookmarks_path(pose_id: @pose.id), id: "bookmark-button-for-pose-#{@pose.id}", remote: true, data: { turbo_method: :post, toggle: "tooltip", placement: "top" }, title: "お気に入りに追加" do %>
+  <i class="fa-regular fa-heart text-danger bookmark-icon"></i>
+<% end %>

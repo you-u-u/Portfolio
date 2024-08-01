@@ -1,0 +1,21 @@
+<% content_for(:title, "お気に入りポーズ") %>
+<div class="container pt-3">
+  <div class="mt-2 text-center">
+    <h1>お気に入りポーズ</h1>
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="row">
+          <% if @bookmark_poses.present? %>
+            <% @bookmark_poses.each do |pose| %>
+              <%= render partial: 'pose', locals: { pose: pose } %>
+            <% end %>
+          <% else %>
+            <p>お気に入りのポーズがありません <i class="fa-regular fa-face-sad-tear"></i></p>
+            <br>
+            <p>好きなポーズを見つけてお気に入り登録しよう！</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

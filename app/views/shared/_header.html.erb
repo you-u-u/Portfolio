@@ -15,6 +15,9 @@
           <%= link_to 'My Diary', diaries_path, class: 'nav-link' %>
         </li>
         <li class='nav-item'>
+          <%= link_to 'お気に入りポーズ', bookmarks_poses_path, class: 'nav-link' %>
+        </li>
+        <li class='nav-item'>
           <%= link_to 'ログアウト', logout_path, class: 'nav-link', data: { turbo_method: :delete } %>
         </li>
       </ul>
