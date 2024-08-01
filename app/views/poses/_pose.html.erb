@@ -1,0 +1,19 @@
+<div class="col-6 col-md-4 col-lg-3 mb-4">
+  <div class="card h-80">
+    <%= link_to pose_path(pose), style: "color: #333333;" do %>
+      <h5 class="card-title mt-5 text-center"><%= pose.japanese_name %></h5>
+    <% end %>
+    <%= image_tag pose.image, class: "card-img-top img-fluid" %>
+    <div class="card-body text-center p-2">
+      <% if current_user.bookmark?(pose) %>
+        <%= link_to bookmark_path(current_user.bookmarks.find_by(pose_id: pose.id)), id: "unbookmark-button-for-pose-#{pose.id}", data: { turbo_method: :delete, toggle: "tooltip", placement: "top" }, title: "お気に入りから削除" do %>
+          <i class="fa-solid fa-heart text-danger bookmark-icon"></i>
+        <% end %>
+      <% else %>
+        <%= link_to bookmarks_path(pose_id: pose.id), id: "bookmark-button-for-pose-#{pose.id}", remote: true, data: { turbo_method: :post, toggle: "tooltip", placement: "top" }, title: "お気に入りに追加" do %>
+          <i class="fa-regular fa-heart text-danger bookmark-icon"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
