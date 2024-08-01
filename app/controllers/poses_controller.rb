@@ -11,6 +11,6 @@ class PosesController < ApplicationController
   end
 
   def bookmarks
-    @bookmark_poses = current_user.bookmark_poses.includes(:user).order(created_at: :desc)
+    @bookmark_poses = current_user.bookmark_poses.order(created_at: :desc)
   end
 end
