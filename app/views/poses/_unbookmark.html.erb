@@ -1,0 +1,3 @@
+<%= link_to bookmark_path(current_user.bookmarks.find_by(pose_id: @pose.id)), id: "unbookmark-button-for-pose-#{@pose.id}", remote: true,  data: { turbo_method: :delete, toggle: "tooltip", placement: "top" }, title: "お気に入りから削除" do %>
+  <i class="fa-solid fa-heart text-danger bookmark-icon"></i>
+<% end %>

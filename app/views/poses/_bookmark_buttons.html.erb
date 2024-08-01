@@ -1,0 +1,5 @@
+<% if current_user.bookmark?(@pose) %>
+  <%= render 'poses/unbookmark', { pose: @pose } %>
+<% else %>
+  <%= render 'poses/bookmark', { pose: @pose } %>
+<% end %>

@@ -1,7 +1,6 @@
 <% provide(:title, @pose.japanese_name) %>
 <meta name="title" content="<%= yield(:title) %>">
 <div class="container mb-4">
-  <!-- ポーズ名を上部中央に表示 -->
   <div class="row">
     <div class="col-12 text-center mt-4">
       <h1><%= @pose.japanese_name %></h1>
@@ -9,8 +8,12 @@
   </div>
 
   <div class="row mt-4 mb-2">
-    <div class="col-md-6 d-flex align-items-center justify-content-center mb-3">
-      <div class="card">
+    <div class="col-md-6 d-flex align-items-center justify-content-center mb-3 position-relative">
+      <div class="card position-relative">
+        <% if user_signed_in? %>
+          <%= render 'bookmark_buttons', { pose: @pose } %>
+        <% end %>
+        <br>
         <%= image_tag @pose.image, class: "img-fluid fixed-size" %>
       </div>
     </div>
