@@ -14,7 +14,7 @@ module ApplicationHelper
         title: :title,
         description: :description,
         type: 'website',
-        url: 'https://www.yoga-diary-app.com'
+        url: 'https://www.yoga-diary-app.com',
         image: image_url('ogp.png'),
         local: 'ja-JP'
       },
