@@ -6,11 +6,8 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    # logout
     sign_out(current_user)
     flash[:notice] = 'ログアウトしました。'
     redirect_to root_path, status: :see_other, data: { turbo_method: :delete }
   end
-
-  # end
 end
