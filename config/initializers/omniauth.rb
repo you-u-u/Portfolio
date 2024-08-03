@@ -4,7 +4,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     request_path: "/users/auth/line",
     scope: "profile openid",
     response_type: "code",
-    state: SecureRandom.hex(24)  }
+    state: SecureRandom.hex(24)
+  }
 end
 
 OmniAuth.config.logger = Rails.logger
