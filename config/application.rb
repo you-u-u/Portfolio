@@ -20,9 +20,9 @@ module Myapp
     config.beginning_of_week = :sunday
 
     config.generators do |g|
-      g.helper false             # helper ファイルを作成しない
-      g.test_framework false     # test ファイルを作成しない
-      g.skip_routes true         # ルーティングの記述を作成しない
+      g.helper false
+      g.test_framework false
+      g.skip_routes true
     end
     
     # Configuration for the application, engines, and railties goes here.
