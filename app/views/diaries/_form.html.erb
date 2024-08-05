@@ -15,7 +15,7 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :compatibility, 'ポーズとの相性', class: 'form-label' %>
+    <%= form.label :compatibility, 'ポーズの完成度', class: 'form-label' %>
     <div class="d-flex justify-content-start flex-wrap ms-3 gap-3">
       <%= enum_radio_buttons(form, :compatibility, Diary.compatibilities) %>
     </div>
