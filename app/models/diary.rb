@@ -16,17 +16,17 @@ class Diary < ApplicationRecord
 
   def only_one_diary_per_day
     existing_diary = Diary.where(user_id: user_id, date: date).where.not(uuid: uuid).exists?
-    Rails.logger.debug "Existing diary: #{existing_diary}"
-    Rails.logger.debug "Validation errors: #{errors.full_messages.join(', ')}"
+    Rails.logger.debug { "Existing diary: #{existing_diary}" }
+    Rails.logger.debug { "Validation errors: #{errors.full_messages.join(', ')}" }
 
     if existing_diary
       errors.add(:base, '今日のDiaryは登録してあります！また明日も頑張りましょう！')
     end
   end
-  
 
   def register_today
     return unless date != Time.zone.today
+
     errors.add(:date, '当日分のみ登録できます')
   end
 end

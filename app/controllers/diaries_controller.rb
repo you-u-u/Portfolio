@@ -39,7 +39,7 @@ class DiariesController < ApplicationController
     if @diary.update(diary_params)
       redirect_to diary_path(@diary), notice: '編集しました'
     else
-      Rails.logger.debug "エラー内容: #{@diary.errors.full_messages.join(', ')}"
+      Rails.logger.debug { "エラー内容: #{@diary.errors.full_messages.join(', ')}" }
       flash.now[:alert] = '編集できませんでした'
       render :edit, status: :unprocessable_entity
     end
